@@ -1,0 +1,24 @@
+version: '3'
+
+networks:
+  chapter-network:
+    driver: bridge
+    name: chapter-network
+
+services:
+
+  chapter-clientes-mysql:
+    image: mysql:5.7
+    container_name: chapter-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: chapter
+      MYSQL_DATABASE: chapterdb
+      MYSQL_USER: chapter
+      MYSQL_PASSWORD: chapter
+    ports:
+      - 3306:3306
+    networks:
+      - chapter-network
+    volumes:
+      - .:/usr/src/app
